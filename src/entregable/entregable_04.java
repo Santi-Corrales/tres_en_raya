@@ -49,7 +49,118 @@ public class entregable_04 {
 		} else if (moneda == 1) {
 			System.out.println("Ha salido cruz," + " " + jugador2 + " " + "empezará");
 			System.out.println("Se empieza con 'x'");
-
+		}
+	
+		System.out.println(" ");
+		char [][] tablero = { //printamos el tablero con una variable de tipo matriz que tendra carácteres
+				{'·','·','·','·','·'},
+				{'·','-','-','-','·'},
+				{'·','-','-','-','·'},
+				{'·','-','-','-','·'},
+				{'·','·','·','·','·'},
+		};
+		
+		char [][] tablero_revancha = { //variable de repuesto para reiniciar la inicial por si hay revancha
+				{'·','·','·','·','·'},
+				{'·','-','-','-','·'},
+				{'·','-','-','-','·'},
+				{'·','-','-','-','·'},
+				{'·','·','·','·','·'},
+		};
+		
+		int contador = 0;
+		String revancha = "Sí"; //variable que usaremos al final para pedir revancha
+		
+		for(int i = 0; i < tablero.length; i++){ //con este bucle FOR mostramos el tablero
+			contador++;
+			for(int j = 0; j < tablero[i].length; j++){ 
+				System.out.print(tablero[i][j] + " ");	
+			}
+			System.out.println(" ");
+		}
+		
+		do { //usaremos un DO-WHILE para poder repetir nuestro bucle principal en caso de que haya revancha 
+		
+		while (moneda == 0) { //para el caso de JUGADOR 1 
+			
+			int rondas = 6;
+			int turno = 1;
+			int terminar = 5;
+			int cortar = 0;
+			
+			for (int ronda = 1; ronda < rondas; ronda++) {//bucle para las rondas 
+				System.out.println("----------Ronda" + ronda + "----------");
+				
+				System.out.println(jugador1 + " " + "introduzca en que fila desea poner la ficha:");
+				int fila1 = sc.nextInt();
+				System.out.println(" ");
+				System.out.println("Ahora introduzca en que columna desea poner la ficha:");
+				int columna1 = sc.nextInt();
+						
+				if (tablero[fila1][columna1] == '-') { //transformamos la posición de carácter en X
+					tablero[fila1][columna1] = 'X';
+				} 
+				
+				for(int i = 0; i < tablero.length; i++){ //mostramos el tablero con la modificación de la ficha
+					contador++;
+					for(int j = 0; j < tablero[i].length; j++){ 
+						System.out.print(tablero[i][j] + " ");	
+					}
+					System.out.println(" ");
+				}
+				//condiciones para GANADOR JUGADOR 1 
+				if (tablero[1][1] == 'X' && tablero[1][2] == 'X' && tablero[1][3] == 'X'|| 
+					tablero[2][1] == 'X' && tablero[2][2] == 'X' && tablero[2][3] == 'X'|| 
+					tablero[3][1] == 'X' && tablero[3][2] == 'X' && tablero[3][3] == 'X'|| 
+					tablero[1][1] == 'X' && tablero[2][1] == 'X' && tablero[3][1] == 'X'|| 
+					tablero[1][2] == 'X' && tablero[2][2] == 'X' && tablero[3][2] == 'X'||
+					tablero[1][3] == 'X' && tablero[2][3] == 'X' && tablero[3][3] == 'X'||
+					tablero[1][1] == 'X' && tablero[2][2] == 'X' && tablero[3][3] == 'X'||
+					tablero[1][3] == 'X' && tablero[2][2] == 'X' && tablero[3][1] == 'X') {
+					System.out.println("¡" + jugador1 + "," + " has ganado la partida!");
+					break;
+				}
+		
+				cortar++;
+				if (cortar == terminar) { //si se llega a 5 rondas el juego se para ya que no hay más espacios disponibles
+					System.out.println("El juego ha terminado,¡Ha habido empate!");
+					break;
+				}
+				//para jugador 2 
+				System.out.println(jugador2 + " " + "introduzca en que fila desea poner la ficha:");
+				int fila2 = sc.nextInt();
+				System.out.println(" ");
+				System.out.println("Ahora introduzca en que columna desea poner la ficha:");
+				int columna2 = sc.nextInt();
+				
+				
+				for (int i = 0; i < turno; i++) {
+					if (tablero[fila2][columna2] == '-') {
+						tablero[fila2][columna2] = 'O';
+					} 
+				}
+				for(int i = 0; i < tablero.length; i++){ 
+					contador++;
+					for(int j = 0; j < tablero[i].length; j++){ 
+						System.out.print(tablero[i][j] + " ");	
+					}
+					System.out.println(" ");
+					
+				}
+				//condiciones para GANADOR JUGADOR 2 
+				if (tablero[1][1] == 'O' && tablero[1][2] == 'O' && tablero[1][3] == 'O'|| 
+					tablero[2][1] == 'O' && tablero[2][2] == 'O' && tablero[2][3] == 'O'|| 
+					tablero[3][1] == 'O' && tablero[3][2] == 'O' && tablero[3][3] == 'O'|| 
+					tablero[1][1] == 'O' && tablero[2][1] == 'O' && tablero[3][1] == 'O'|| 
+					tablero[1][2] == 'O' && tablero[2][2] == 'O' && tablero[3][2] == 'O'||
+					tablero[1][3] == 'O' && tablero[2][3] == 'O' && tablero[3][3] == 'O'||
+					tablero[1][1] == 'O' && tablero[2][2] == 'O' && tablero[3][3] == 'O'||
+					tablero[1][3] == 'O' && tablero[2][2] == 'O' && tablero[3][1] == 'O') {
+					System.out.println("¡" + jugador2 + "," + " has ganado la partida!");
+						break;
+					}	
+			}
+			break;
 		}
 		
 		
