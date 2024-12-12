@@ -244,8 +244,26 @@ public class entregable_04 {
 			break;
 		}
 		
-		
-		
+		sc.nextLine(); //para que podamos recoger los datos de STRINGS, como antes hemos utilizado INT no nos dé problemas
+		System.out.println(jugador1 +  " ¿Desea jugar otra partida? (Sí/No)"); //preguntamos si desea jugar otra partida a ambos jugadores
+        String resp1 = sc.nextLine();
+        
+        System.out.println(jugador2 + " ¿Desea jugar otra partida? (Sí/No)");
+        String resp2 = sc.nextLine();
+        //condicionales para cada opción, se reiniciará el juego y el tablero en caso de que ambos esten de acuerdo en jugador otra vez
+        if (resp1.equalsIgnoreCase("No") || resp2.equalsIgnoreCase("No")) {
+            System.out.println("¡De acuerdo, gracias por jugar al tres en raya!");
+            break;  
+        } else if (resp1.equalsIgnoreCase("Sí") && resp2.equalsIgnoreCase("Sí")) {
+            revancha = "Sí";  
+        	 tablero = tablero_revancha;
+        } else {
+            System.out.println("Ninguna respuesta elegida. Gracias por jugar.");
+            break;  
+        }
+        //reinicia el bucle para la revancha 
+		} while (revancha.equalsIgnoreCase("Sí"));  	
+			
 	}
 
 }
