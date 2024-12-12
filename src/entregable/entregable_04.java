@@ -162,6 +162,87 @@ public class entregable_04 {
 			}
 			break;
 		}
+		while (moneda == 1) { //para cuando el jugador 2 empieza 
+			
+			int rondas = 6;
+			int turno = 1;
+			int terminar = 5;
+			int cortar = 0;
+			
+			for (int ronda = 1; ronda < rondas; ronda++) {
+				System.out.println("----------Ronda" + ronda + "----------");
+				
+				System.out.println(jugador2 + " " + "introduzca en que fila desea poner la ficha:");
+				int fila2 = sc.nextInt();
+				System.out.println(" ");
+				System.out.println("Ahora introduzca en que columna desea poner la ficha:");
+				int columna2 = sc.nextInt();
+						
+				if (tablero[fila2][columna2] == '-') {
+					tablero[fila2][columna2] = 'X';
+				} 
+				
+				for(int i = 0; i < tablero.length; i++){ 
+					contador++;
+					for(int j = 0; j < tablero[i].length; j++){ 
+						System.out.print(tablero[i][j] + " ");	
+					}
+					System.out.println(" ");
+				}
+				//condicionales para cuando el jugador 2 es ganador
+				if (tablero[1][1] == 'X' && tablero[1][2] == 'X' && tablero[1][3] == 'X'|| 	
+					tablero[2][1] == 'X' && tablero[2][2] == 'X' && tablero[2][3] == 'X'|| 
+					tablero[3][1] == 'X' && tablero[3][2] == 'X' && tablero[3][3] == 'X'|| 
+					tablero[1][1] == 'X' && tablero[2][1] == 'X' && tablero[3][1] == 'X'|| 
+					tablero[1][2] == 'X' && tablero[2][2] == 'X' && tablero[3][2] == 'X'||
+					tablero[1][3] == 'X' && tablero[2][3] == 'X' && tablero[3][3] == 'X'||
+					tablero[1][1] == 'X' && tablero[2][2] == 'X' && tablero[3][3] == 'X'||
+					tablero[1][3] == 'X' && tablero[2][2] == 'X' && tablero[3][1] == 'X') {
+					System.out.println("¡" + jugador2 + "," + " has ganado la partida!");
+					break;
+				}
+				
+				cortar++;
+				if (cortar == terminar) {
+					System.out.println("El juego ha terminado,¡Ha habido empate!");
+					break;
+				}
+	
+				System.out.println(jugador1 + " " + "introduzca en que fila desea poner la ficha:");
+				int fila1 = sc.nextInt();
+				System.out.println(" ");
+				System.out.println("Ahora introduzca en que columna desea poner la ficha:");
+				int columna1 = sc.nextInt();
+				
+				
+				for (int i = 0; i < turno; i++) {
+					if (tablero[fila1][columna1] == '-') {
+						tablero[fila1][columna1] = 'O';
+					} 
+				}
+				for(int i = 0; i < tablero.length; i++){ 
+					contador++;
+					for(int j = 0; j < tablero[i].length; j++){ 
+						System.out.print(tablero[i][j] + " ");	
+					}
+					System.out.println(" ");
+				}
+				//condicionales para cuando el jugador 1 es ganador
+				if (tablero[1][1] == 'O' && tablero[1][2] == 'O' && tablero[1][3] == 'O'|| 
+					tablero[2][1] == 'O' && tablero[2][2] == 'O' && tablero[2][3] == 'O'|| 
+					tablero[3][1] == 'O' && tablero[3][2] == 'O' && tablero[3][3] == 'O'|| 
+					tablero[1][1] == 'O' && tablero[2][1] == 'O' && tablero[3][1] == 'O'|| 
+					tablero[1][2] == 'O' && tablero[2][2] == 'O' && tablero[3][2] == 'O'||
+					tablero[1][3] == 'O' && tablero[2][3] == 'O' && tablero[3][3] == 'O'||
+					tablero[1][1] == 'O' && tablero[2][2] == 'O' && tablero[3][3] == 'O'||
+					tablero[1][3] == 'O' && tablero[2][2] == 'O' && tablero[3][1] == 'O') {
+					System.out.println("¡" + jugador1 + "," + " has ganado la partida!");
+						break;
+					}
+			}
+
+			break;
+		}
 		
 		
 		
